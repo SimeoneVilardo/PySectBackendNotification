@@ -1,0 +1,35 @@
+---
+
+# Default compose file for development and production.
+# Should be used directly in development.
+# Automatically loads `docker-compose.override.yml` if it exists.
+# No extra steps required.
+# Should be used together with `docker/docker-compose.prod.yml`
+# in production.
+
+version: "3.9"
+services:
+
+  web:
+    image: "pysect-backend-notification:dev"
+    container_name: pysect-backend-notification-web
+    ports:
+      - "9003:8000"
+    #platform: linux/amd64
+    build:
+      target: builder_image
+      context: .
+      dockerfile: ./docker/express/Dockerfile
+      cache_from:
+        - "pysect-backend-notification:dev"
+        - "pysect-backend-notification:latest"
+        - "*"
+    networks:
+      - nginx-reverse-proxy-net
+    env_file:
+      - ./docker/config/.env
+    command: ./docker/express/local_run.sh
+
+networks:
+  nginx-reverse-proxy-net:
+    external: true
