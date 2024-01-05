@@ -4,8 +4,8 @@ require('express-async-errors');
 const queueHelper = require("../helpers/queue-helper");
 const authHelper = require("../helpers/auth-helper");
 
-router.get('/', function (req, res, next) {
-  res.json({ message: 'Hello World' });
+router.get('/api/notification/health', function (req, res, next) {
+  res.json({ message: 'OK' });
 });
 
 router.get('/api/notification/challenge-submission-update', authHelper.auth, async (req, res) => {
