@@ -1,9 +1,11 @@
 const authHelper = {};
+const cookie = require('cookie');
 
 authHelper.auth = async function (req, res, next) {
-    const token = req.query.token;
+    const cookies = cookie.parse(req.headers.cookie || '');
+    const token = cookies.token;
     const headers = {
-        'Authorization': `Bearer ${token}`
+        'Cookie': `token=${token}`
     }
     try {
         userResponse = await fetch('http://pysect-backend-web:8000/api/me', { headers: headers });
