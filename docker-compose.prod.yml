@@ -28,6 +28,10 @@ services:
       - nginx-reverse-proxy-net
     env_file:
       - ./docker/config/.env
+    environment:
+      VIRTUAL_HOST: py.sect.letz.dev
+      VIRTUAL_PATH: /api/notification/
+      VIRTUAL_PORT: 8000
     command: ./docker/express/local_run.sh
 
 networks:
