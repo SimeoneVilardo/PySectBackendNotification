@@ -30,7 +30,7 @@ services:
       - ./docker/config/.env
     environment:
       VIRTUAL_HOST: py.sect.letz.dev
-      VIRTUAL_PATH: /api/notification/
+      VIRTUAL_PATH: ~^/(api/notification)/
       VIRTUAL_PORT: 8000
     command: ./docker/express/local_run.sh
 
