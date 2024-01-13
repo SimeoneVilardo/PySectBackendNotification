@@ -4,8 +4,6 @@ services:
   web-prd:
     image: "pysect-backend-notification-prd"
     container_name: pysect-backend-notification-prd
-    ports:
-      - "9003:8000"
     #platform: linux/amd64
     build:
       target: builder_image
