@@ -8,7 +8,7 @@ authHelper.auth = async function (req, res, next) {
         'Cookie': `token=${token}`
     }
     try {
-        userResponse = await fetch('http://pysect-backend-web:8000/api/me', { headers: headers });
+        userResponse = await fetch(`http://${process.env.SSO_HOST}:${process.env.SSO_PORT}/api/me`, { headers: headers });
     }
     catch (e) {
         throw { status: 401, message: 'Cannot contact auth server', managed: true };
