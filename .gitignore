@@ -20,7 +20,8 @@
 !docs/**
 node_modules/
 server/storage
-docker/config/.env
+docker/config/.env.dev
+docker/config/.env.prod
 docker/config/.env.local.shell
 docs/_build/
 docs/_build/**

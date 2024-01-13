@@ -14,7 +14,7 @@ services:
     networks:
       - pysect-network
     env_file:
-      - ./docker/config/.env
+      - ./docker/config/.env.template
     command: ./docker/express/local_run.sh
 
 networks:

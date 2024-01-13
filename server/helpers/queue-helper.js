@@ -2,7 +2,7 @@ const queueHelper = {};
 const redis = require('redis');
 
 queueHelper.subscribe = async (user, callback) => {
-    var subscriber = redis.createClient({ url: 'redis://pysect-backend-redis:6379' });
+    var subscriber = redis.createClient({ url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}` });
     subscriber.user = user;
     await subscriber.connect();
     await subscriber.subscribe(user.username, (message) => {
