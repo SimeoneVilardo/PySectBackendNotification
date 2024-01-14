@@ -8,18 +8,33 @@ router.get('/api/notification/health', function (req, res, next) {
   res.json({ message: 'OK' });
 });
 
-router.get('/api/notification/challenge-submission-update', authHelper.auth, async (req, res) => {
-  res.setHeader('Content-Type', 'text/event-stream');
-  res.setHeader('Cache-Control', 'no-cache');
-  res.setHeader('Connection', 'keep-alive');
+router.get('/api/notification/challenge-submission-update', authHelper.auth, async (req, res, next) => {
+  try {
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
 
-  const subscriber = await queueHelper.subscribe(req.user, (message) => {
-    res.write(message);
-  });
+    const subscriber = await queueHelper.subscribe(req.user, (message) => {
+      try {
+        res.write(message);
+      }
+      catch (e) {
+        console.error(e);
+      }
+    });
 
-  req.on('close', async function () {
-    await queueHelper.unsubscribe(subscriber);
-  });
+    req.on('close', async function () {
+      try {
+        await queueHelper.unsubscribe(subscriber);
+      }
+      catch (e) {
+        console.error(e);
+      }
+    });
+  }
+  catch (e) {
+    console.error(e);
+  }
 });
 
 
