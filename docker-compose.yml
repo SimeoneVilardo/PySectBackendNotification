@@ -1,22 +1,14 @@
-version: "3.9"
+version: '3.5'
 services:
-
-  web-local:
-    image: "pysect-backend-notification-local"
-    container_name: pysect-backend-notification-local
-    ports:
-      - "9003:8000"
-    #platform: linux/amd64
+  server:
     build:
-      target: builder_image
       context: .
-      dockerfile: ./docker/express/Dockerfile
-    networks:
-      - pysect-network
-    env_file:
-      - ./docker/config/.env.template
-    command: ./docker/express/local_run.sh
+      dockerfile: ./Dockerfile
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    image: pysect-backend-notification/server:latest
+    ports:
+      - "8081:8081"
 
-networks:
-  pysect-network:
-    external: true
