@@ -18,6 +18,7 @@
 !docker/**
 !docs/
 !docs/**
+!deploy.sh
 node_modules/
 server/storage
 docker/config/.env.dev
