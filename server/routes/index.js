@@ -16,7 +16,9 @@ router.get('/api/notification/challenge-submission-update', authHelper.auth, asy
 
     const subscriber = await queueHelper.subscribe(req.user, (message) => {
       try {
+        res.write("event: submission\n");
         res.write(message);
+        res.write("\n");
       }
       catch (e) {
         console.error(e);
@@ -31,6 +33,10 @@ router.get('/api/notification/challenge-submission-update', authHelper.auth, asy
         console.error(e);
       }
     });
+
+    res.write("event: connection\n");
+    res.write("data: OK\n");
+    res.write("\n");
   }
   catch (e) {
     console.error(e);

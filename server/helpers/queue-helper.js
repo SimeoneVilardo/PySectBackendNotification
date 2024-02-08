@@ -8,7 +8,7 @@ queueHelper.subscribe = async (user, callback) => {
         await subscriber.connect();
         await subscriber.subscribe(user.username, (message) => {
             try {
-                callback(`data: ${message}\n\n`);
+                callback(`data: ${message}\n`);
             }
             catch (e) {
                 console.error(e);
