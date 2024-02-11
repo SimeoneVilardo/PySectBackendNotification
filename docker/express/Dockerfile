@@ -1,18 +1,29 @@
-# Use the official lightweight Node.js 14 image.
-# https://hub.docker.com/_/node
+# Use a specific version of Node.js.
 FROM node:21 AS builder_image
 
-# Create and change to the app directory.
+# Set the working directory in the container.
 WORKDIR /code
 
-# Copy application dependency manifests to the container image.
-# A wildcard is used to ensure both package.json AND package-lock.json are copied.
-# Copying this separately prevents re-running npm install on every code change.
-COPY package*.json ./
+# Copy dependency manifests.
+COPY package.json package-lock.json ./
 
 # Install production dependencies.
 RUN npm install --only=production
 
-# Copy local code to the container image.
+# Copy the rest of the application code.
 COPY . .
 
+# Use a lighter Node.js image for the final production image.
+FROM node:21-alpine as runner_image
+
+# Set the working directory in the container.
+WORKDIR /code
+
+# Copy only the necessary files from the previous stage.
+COPY --from=builder_image /code .
+
+# Expose the port the app runs on.
+EXPOSE 8000
+
+# Command to run the application.
+CMD ["node", "app.js"]
