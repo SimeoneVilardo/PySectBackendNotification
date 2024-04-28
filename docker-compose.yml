@@ -6,7 +6,6 @@ services:
     container_name: pysect-backend-notification-local
     ports:
       - "9003:8000"
-    #platform: linux/amd64
     build:
       target: builder_image
       context: .
