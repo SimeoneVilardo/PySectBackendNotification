@@ -4,7 +4,7 @@ services:
   web-prod:
     image: "pysect-backend-notification-prod"
     container_name: pysect-backend-notification-prod
-    #platform: linux/amd64
+    platform: linux/arm64
     build:
       target: builder_image
       context: .
