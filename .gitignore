@@ -10,6 +10,9 @@
 !setup.cfg
 !deploy/
 !deploy/**
+!.devcontainer
+!.devcontainer/docker-compose.yml
+!.devcontainer/devcontainer.json
 !.gitlab-ci.yml
 !docker-compose.yml
 !docker-compose.prod.yml
