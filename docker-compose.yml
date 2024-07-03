@@ -9,7 +9,7 @@ services:
     build:
       target: builder_image
       context: .
-      dockerfile: ./docker/express/Dockerfile
+      dockerfile: ./docker/express/Dockerfile.local
     networks:
       - pysect-network
     env_file:
