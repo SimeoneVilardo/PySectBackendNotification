@@ -3,9 +3,15 @@ var router = express.Router();
 require('express-async-errors');
 const queueHelper = require("../helpers/queue-helper");
 const authHelper = require("../helpers/auth-helper");
+const {APP_CONFIG} = require("../config/conf")
+
 
 router.get('/api/notification/health', function (req, res, next) {
   res.json({ message: 'OK' });
+});
+
+router.get('/api/notification/version', function (req, res, next) {
+  res.json({ message: APP_CONFIG.VERSION });
 });
 
 router.get('/api/notification/challenge-submission-update', authHelper.auth, async (req, res, next) => {
