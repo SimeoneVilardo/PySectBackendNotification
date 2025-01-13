@@ -36,3 +36,4 @@ docker/.elasticbeanstalk/
 docker/.elasticbeanstalk/**
 !.vscode
 !.vscode/**
+!docker-compose.override.yml.template
