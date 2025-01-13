@@ -1,4 +1,3 @@
-version: "3.9"
 services:
 
   web-local:
@@ -6,14 +5,10 @@ services:
     container_name: pysect-backend-notification-local
     ports:
       - "9003:8000"
-    build:
-      target: builder_image
-      context: .
-      dockerfile: ./docker/express/Dockerfile.local
     networks:
       - pysect-network
     env_file:
-      - ./docker/config/.env.template
+      - ./docker/config/.env
     command: ./docker/express/local_run.sh
 
 networks:

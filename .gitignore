@@ -22,6 +22,9 @@
 !docs/
 !docs/**
 !deploy.sh
+.env
+.env.prod
+.env.dev
 node_modules/
 server/storage
 docker/config/.env.dev
@@ -31,3 +34,5 @@ docs/_build/
 docs/_build/**
 docker/.elasticbeanstalk/
 docker/.elasticbeanstalk/**
+!.vscode
+!.vscode/**
